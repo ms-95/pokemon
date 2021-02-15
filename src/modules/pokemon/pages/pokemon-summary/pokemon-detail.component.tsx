@@ -336,107 +336,7 @@ export default function PokemonDetail() {
                         </Card>
                     </Col>
                 </Row>
-                <Row>
-                    <Col bsPrefix="col-12">
-                        <Card className="my-2  w-100 shadow border-0">
-                            <Card.Body>
-                                <div className="h3">Training</div>
-                                <div className="d-flex flex-column" style={{ gap: '20px' }}>
-                                    <Row>
-                                        <Col>EV yield</Col>
-                                        <Col>
-                                            <div className="d-flex flex-wrap" style={{ gap: '10px' }}>
-                                                {pokemon?.stats?.[0].effort ? <span className="mr-1 mr-md-0">{pokemon?.stats?.[0].effort} HP</span> : ''}
-                                                {pokemon?.stats?.[1].effort ? <span className="mr-1 mr-md-0">{pokemon?.stats?.[1].effort} ATTACK</span> : ''}
-                                                {pokemon?.stats?.[2].effort ? <span className="mr-1 mr-md-0">{pokemon?.stats?.[2].effort} DEFENSE</span> : ''}
-                                                {pokemon?.stats?.[3].effort ? <span className="mr-1 mr-md-0">{pokemon?.stats?.[3].effort} SP. ATK</span> : ''}
-                                                {pokemon?.stats?.[4].effort ? <span className="mr-1 mr-md-0">{pokemon?.stats?.[4].effort} SP. DEF</span> : ''}
-                                                {pokemon?.stats?.[5].effort ? <span className="mr-1 mr-md-0">{pokemon?.stats?.[5].effort} SPEED</span> : ''}
-                                            </div>
-                                        </Col>
-                                    </Row>
-                                    <Row>
-                                        <Col>Catch rate</Col>
-                                        <Col>{pokemon?.capture_rate}</Col>
-                                    </Row>
-                                    <Row>
-                                        <Col>Gender</Col>
-                                        <Col className="d-flex" style={{ gap: '10px' }}>
-                                            <div>
-                                                <FontAwesomeIcon className="text-info" icon={faMars} />
-                                                {`${(8 - pokemon?.gender_rate) / 8 * 100}%`}
-                                            </div>
-
-                                            <div>
-                                                <FontAwesomeIcon className="text-danger" icon={faVenus} />
-                                                {`${(pokemon?.gender_rate) / 8 * 100}%`}
-                                            </div>
-                                        </Col>
-                                    </Row>
-                                    <Row>
-                                        <Col>Egg group</Col>
-                                        <Col>{pokemon?.egg_groups.map((e: any, i: number) => <div className="text-capitalize" key={`egg${i}`}>{e.name}</div>)}</Col>
-                                    </Row>
-                                    <Row>
-                                        <Col>Egg Steps</Col>
-                                        <Col>~{pokemon?.hatch_counter * 256}</Col>
-                                    </Row>
-                                    <Row>
-                                        <Col>Base happiness</Col>
-                                        <Col>{pokemon?.base_happiness}</Col>
-                                    </Row>
-
-                                </div>
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                    <Col></Col>
-                </Row>
-
-                <Row noGutters>
-                    <Col bsPrefix="col-12">
-                        <Card className="my-2  w-100 shadow border-0">
-                            <Card.Body>
-                                <div className="h3">Moveset</div>
-                                <Row noGutters className="h6" >
-                                    <Col bsPrefix="col-auto" style={{width: '100px'}}></Col>
-                                    <Col bsPrefix="col-4">Move</Col>
-                                    <Col style={{width: '80px'}}>Type</Col>
-                                    
-                                    <Col style={{width: '50px'}} className="d-none d-md-block">Power</Col>
-                                    <Col style={{width: '70px'}} className="d-none d-lg-block">Accuracy</Col>
-                                    <Col style={{width: '70px'}} className="d-none d-xl-block">Category</Col>
-                                    <Col style={{width: '20px'}} className="d-none d-lg-block">PP</Col>
-                                   
-                                    
-                                </Row>
-                                <div className="d-flex flex-column" style={{ gap: '20px' }}>
-                                    {pokemon?.moves.map((m: any, i: number) => <Row noGutters key={`move${i}`} >
-                                        <Col bsPrefix="col-auto" style={{width: '100px'}} className="text-capitalize">{m.levelLearnedAt > 0 ? m.levelLearnedAt : m.method}</Col>
-                                        <Col bsPrefix="col-4" className="text-capitalize" >{m?.name.replaceAll('-', ' ')}</Col>
-                                        <Col style={{width: '80px'}}>
-                                            <div className="mb-1 mb-md-0">
-                                                <TypePill type={m.type}></TypePill>
-                                            </div>
-                                            
-                                        </Col>
-                                       
-                                      
-                                      
-                                        <Col style={{width: '50px'}} className="d-none d-md-block">{m.power || '---'}</Col>
-                                    <Col style={{width: '70px'}} className="d-none d-lg-block">{m.accuracy || '---'}</Col>
-                                    <Col style={{width: '70px'}} className="d-none d-xl-block"><img style={{width: '70px', objectFit: 'scale-down'}} src={m.damageClass === 'status' ? Status : m.damageClass === 'physical' ? Physical : Special}/></Col>
-                                    <Col style={{width: '20px'}} className="d-none d-lg-block">{m.pp}</Col>
-                                    </Row>
-                                    )}
-
-                                </div>
-                            </Card.Body>
-                        </Card>
-                    </Col>
-
-                </Row>
-
+                
                 <Row noGutters>
                     <Col bsPrefix="col-12">
                         <Card className="my-2  w-100 shadow border-0">
@@ -623,6 +523,109 @@ export default function PokemonDetail() {
 
                 </Row>
 
+                
+                <Row>
+                    <Col bsPrefix="col-12">
+                        <Card className="my-2  w-100 shadow border-0">
+                            <Card.Body>
+                                <div className="h3">Training</div>
+                                <div className="d-flex flex-column" style={{ gap: '20px' }}>
+                                    <Row>
+                                        <Col>EV yield</Col>
+                                        <Col>
+                                            <div className="d-flex flex-wrap" style={{ gap: '10px' }}>
+                                                {pokemon?.stats?.[0].effort ? <span className="mr-1 mr-md-0">{pokemon?.stats?.[0].effort} HP</span> : ''}
+                                                {pokemon?.stats?.[1].effort ? <span className="mr-1 mr-md-0">{pokemon?.stats?.[1].effort} ATTACK</span> : ''}
+                                                {pokemon?.stats?.[2].effort ? <span className="mr-1 mr-md-0">{pokemon?.stats?.[2].effort} DEFENSE</span> : ''}
+                                                {pokemon?.stats?.[3].effort ? <span className="mr-1 mr-md-0">{pokemon?.stats?.[3].effort} SP. ATK</span> : ''}
+                                                {pokemon?.stats?.[4].effort ? <span className="mr-1 mr-md-0">{pokemon?.stats?.[4].effort} SP. DEF</span> : ''}
+                                                {pokemon?.stats?.[5].effort ? <span className="mr-1 mr-md-0">{pokemon?.stats?.[5].effort} SPEED</span> : ''}
+                                            </div>
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col>Catch rate</Col>
+                                        <Col>{pokemon?.capture_rate}</Col>
+                                    </Row>
+                                    <Row>
+                                        <Col>Gender</Col>
+                                        <Col className="d-flex" style={{ gap: '10px' }}>
+                                            <div>
+                                                <FontAwesomeIcon className="text-info" icon={faMars} />
+                                                {`${(8 - pokemon?.gender_rate) / 8 * 100}%`}
+                                            </div>
+
+                                            <div>
+                                                <FontAwesomeIcon className="text-danger" icon={faVenus} />
+                                                {`${(pokemon?.gender_rate) / 8 * 100}%`}
+                                            </div>
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col>Egg group</Col>
+                                        <Col>{pokemon?.egg_groups.map((e: any, i: number) => <div className="text-capitalize" key={`egg${i}`}>{e.name}</div>)}</Col>
+                                    </Row>
+                                    <Row>
+                                        <Col>Egg Steps</Col>
+                                        <Col>~{pokemon?.hatch_counter * 256}</Col>
+                                    </Row>
+                                    <Row>
+                                        <Col>Base happiness</Col>
+                                        <Col>{pokemon?.base_happiness}</Col>
+                                    </Row>
+
+                                </div>
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                    <Col></Col>
+                </Row>
+
+                <Row noGutters>
+                    <Col bsPrefix="col-12">
+                        <Card className="my-2  w-100 shadow border-0">
+                            <Card.Body>
+                                <div className="h3">Moveset</div>
+                                <Row noGutters className="h6" >
+                                    <Col bsPrefix="col-auto" style={{width: '100px'}}></Col>
+                                    <Col bsPrefix="col-4">Move</Col>
+                                    <Col style={{width: '80px'}}>Type</Col>
+                                    
+                                    <Col style={{width: '50px'}} className="d-none d-md-block">Power</Col>
+                                    <Col style={{width: '70px'}} className="d-none d-lg-block">Accuracy</Col>
+                                    <Col style={{width: '70px'}} className="d-none d-xl-block">Category</Col>
+                                    <Col style={{width: '20px'}} className="d-none d-lg-block">PP</Col>
+                                   
+                                    
+                                </Row>
+                                <div className="d-flex flex-column" style={{ gap: '20px' }}>
+                                    {pokemon?.moves.map((m: any, i: number) => <Row noGutters key={`move${i}`} >
+                                        <Col bsPrefix="col-auto" style={{width: '100px'}} className="text-capitalize">{m.levelLearnedAt > 0 ? m.levelLearnedAt : m.method}</Col>
+                                        <Col bsPrefix="col-4" className="text-capitalize" >{m?.name.replaceAll('-', ' ')}</Col>
+                                        <Col style={{width: '80px'}}>
+                                            <div className="mb-1 mb-md-0">
+                                                <TypePill type={m.type}></TypePill>
+                                            </div>
+                                            
+                                        </Col>
+                                       
+                                      
+                                      
+                                        <Col style={{width: '50px'}} className="d-none d-md-block">{m.power || '---'}</Col>
+                                    <Col style={{width: '70px'}} className="d-none d-lg-block">{m.accuracy || '---'}</Col>
+                                    <Col style={{width: '70px'}} className="d-none d-xl-block"><img style={{width: '70px', objectFit: 'scale-down'}} src={m.damageClass === 'status' ? Status : m.damageClass === 'physical' ? Physical : Special}/></Col>
+                                    <Col style={{width: '20px'}} className="d-none d-lg-block">{m.pp}</Col>
+                                    </Row>
+                                    )}
+
+                                </div>
+                            </Card.Body>
+                        </Card>
+                    </Col>
+
+                </Row>
+
+           
 
 
 
