@@ -124,8 +124,8 @@ export default function PokemonDetail() {
                                             <Col>                                                
                                                 <div className="d-flex flex-wrap" style={{ gap: '5px' }}>
                                                     {pokemon?.types?.map((t: any, i: number) => 
-                                                        <div className="mb-1 mb-md-0">
-                                                            <TypePill type={t.type.name} key={`pokemonType${i}`}></TypePill>
+                                                        <div className="mb-1 mb-md-0" key={`pokemonType${i}`}>
+                                                            <TypePill type={t.type.name} ></TypePill>
                                                         </div>
                                                     )}
                                                 </div>
@@ -446,7 +446,7 @@ export default function PokemonDetail() {
                                     <Col bsPrefix="col-12 col-md" className="d-flex align-items-center justify-content-center" >
                                         {pokemon?.evolution ?
                                             <div>
-                                                <img style={{ width: '100px' }} alt={`${pokemon?.evolution?.rootName}`} src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon?.evolution?.rootId}.png`} />
+                                                <img style={{ width: '100px' }} alt={`${pokemon?.evolution?.rootName}`} src={require(`../../../../assets/images/artworks/${pokemon?.evolution?.rootId}_artwork.png`).default} />
                                                 <div className="text-capitalize text-center">{pokemon?.evolution?.rootName}</div>
                                             </div> : ''
                                         }
@@ -601,7 +601,7 @@ export default function PokemonDetail() {
                                                         <Col key={`ev${i}`}>
                                                             <div className="text-center">
 
-                                                                <img style={{ width: '100px' }} alt={`${c?.name}`} src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${c?.id}.png`} />
+                                                                <img style={{ width: '100px' }} alt={`${c?.name}`} src={require(`../../../../assets/images/artworks/${c?.id}_artwork.png`).default} />
                                                                 <div className="text-capitalize">{c?.name}</div>
 
                                                             </div>
