@@ -7,24 +7,26 @@ import {
   Link,
   useHistory,
 } from "react-router-dom";
-import { PokemonContainer } from './modules/pokemon/pokemon.container';
-import { OtherContainer } from './modules/other/other.container';
-import { AbilityContainer } from './modules/ability/ability.container';
-import { ItemContainer } from './modules/item/item.container';
-import { MoveContainer } from './modules/move/move.container';
-import React, { useRef, useState } from 'react';
+import React, { Suspense, lazy, useRef, useState } from 'react';
+
 import { Col, Row } from 'react-bootstrap';
 import ScrollToTop from './shared/utils/scroll-to-top.utils';
 import Spinner from './shared/components/spinner.component';
 import SpinnerContext from './shared/contexts/spinner.context';
 import FabMenu from './shared/components/fab-menu/fab-menu.component';
 
+const PokemonContainer = lazy(() => import ('./modules/pokemon/pokemon.container')) ;
+const OtherContainer = lazy(() => import ('./modules/other/other.container')) ;
+const AbilityContainer = lazy(() => import ('./modules/ability/ability.container')) ;
+const ItemContainer = lazy(() => import ('./modules/item/item.container')) ;
+const MoveContainer = lazy(() => import ('./modules/move/move.container')) ;
 
 function App() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const pokemonRef = useRef<any>(null);
   return (
     <Router>
+      <Suspense fallback={<Spinner></Spinner>}>
       <SpinnerContext.Provider value={{ isLoading, setIsLoading }}>
         {/* <Container fluid  className="h-100" > */}
         <Row className="h-100" noGutters>
@@ -59,7 +61,9 @@ function App() {
         </div>
         <FabMenu></FabMenu>
       </SpinnerContext.Provider>
+      </Suspense>
     </Router>
+    
   );
 }
 

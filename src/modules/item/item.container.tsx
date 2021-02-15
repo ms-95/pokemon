@@ -1,4 +1,4 @@
-export function ItemContainer() {
+export default function ItemContainer() {
     return (
         <div>Item</div>
     );

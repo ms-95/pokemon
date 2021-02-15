@@ -1,5 +1,5 @@
-export function OtherContainer() {
+export default function OtherContainer() {
     return (
-        <div>312312</div>
+        <div>Other</div>
     )
 }

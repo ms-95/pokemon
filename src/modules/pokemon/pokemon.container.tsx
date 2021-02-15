@@ -6,7 +6,7 @@ import {
 import PokemonDetail from "./pages/pokemon-summary/pokemon-detail.component";
 
 import { PokemonSummary } from "./pages/pokemon-summary/pokemon-summary.component";
-export function PokemonContainer() {
+export default function PokemonContainer() {
     return (
         <Switch>
             <Redirect exact from='/pokemon' to='/pokemon/s' />
