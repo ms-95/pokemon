@@ -14,7 +14,7 @@ export default function FabMenu() {
     return (
 <Fab
           icon={<FontAwesomeIcon icon={faAngleUp}></FontAwesomeIcon>}
-          event={'hover'}
+          event={'click'}
           alwaysShowTitle={true}
           style={{
             position: 'fixed',
