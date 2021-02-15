@@ -103,7 +103,9 @@ export default function PokemonDetail() {
 
                                 <Row>
                                     <Col bsPrefix="col-12 col-sm-6">
-                                        <img style={{width: '250px'}} alt={`${pokemon?.name}`} src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${index}.png`} />
+                                        <img style={{width: '250px'}} alt={`${pokemon?.name}`} 
+                                            src={require(`../../../../assets/images/artworks/${index}_artwork.png`).default}
+                                        />
                                     </Col>
                                     <Col bsPrefix="col-12 col-sm-6 d-flex flex-column" style={{ gap: '10px' }}>
                                         <Row>

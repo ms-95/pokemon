@@ -109,7 +109,9 @@ export function PokemonSummary() {
                             <Col bsPrefix="col-12 col-sm-4 col-lg-2  shadow-lg" style={{...getColor(i)}} key={'p'+y} >
                                 <div className="btn w-100 text-center text-white" onClick={() => viewPokemon(p?.index) }>
                                     <div style={{height: '56px'}}>                                   
-                                        <img alt={`${p?.name}`} src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/${p?.index}.png`} onError={(e: any)=>{e.target.style.display = 'none'}}></img>
+                                        <img alt={`${p?.name}`} 
+                                        src={require(`../../../../assets/images/sprites/${p?.index}_sprite.png`).default} 
+                                        onError={(e: any)=>{e.target.style.display = 'none'}}></img>
                                     </div>
                                     <div>#{String(p?.index).padStart(3, '0')}</div>
                                     <div className="text-capitalize">{p?.name}</div>

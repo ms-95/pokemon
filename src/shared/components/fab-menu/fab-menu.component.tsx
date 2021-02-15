@@ -8,6 +8,7 @@ import './fab-menu.component.scss';
 import BagIcon from '../../../assets/images/bag.webp';
 import TmCaseIcon from '../../../assets/images/tm_case.webp';
 import PokedexIcon from '../../../assets/images/pokedex.webp';
+import AbilityIcon from '../../../assets/images/power_bracer.webp';
 
 export default function FabMenu() {
     const history = useHistory();
@@ -54,7 +55,7 @@ export default function FabMenu() {
 
             onClick={(e) => { history.push('/ability'); }}
           >
-            <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/power-bracer.png`} />
+            <img src={AbilityIcon} />
 
           </Action>
           <Action
