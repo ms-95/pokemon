@@ -445,7 +445,7 @@ export default function PokemonDetail() {
                                 <Row noGutters  >
                                     <Col bsPrefix="col-12 col-md" className="d-flex align-items-center justify-content-center" >
                                         {pokemon?.evolution ?
-                                            <div>
+                                            <div className="btn" onClick={() => viewPokemon(pokemon?.evolution?.rootId)}>
                                                 <img style={{ width: '100px' }} alt={`${pokemon?.evolution?.rootName}`} src={require(`../../../../assets/images/artworks/${pokemon?.evolution?.rootId}_artwork.png`).default} />
                                                 <div className="text-capitalize text-center">{pokemon?.evolution?.rootName}</div>
                                             </div> : ''
@@ -599,7 +599,7 @@ export default function PokemonDetail() {
 
                                                         </Col>
                                                         <Col key={`ev${i}`}>
-                                                            <div className="text-center">
+                                                            <div className="text-center btn" onClick={() => viewPokemon(c?.id)}>
 
                                                                 <img style={{ width: '100px' }} alt={`${c?.name}`} src={require(`../../../../assets/images/artworks/${c?.id}_artwork.png`).default} />
                                                                 <div className="text-capitalize">{c?.name}</div>
