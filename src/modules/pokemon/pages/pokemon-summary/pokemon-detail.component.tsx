@@ -119,10 +119,12 @@ export default function PokemonDetail() {
                                         </Row>
                                         <Row>
                                             <Col>Type</Col>
-                                            <Col>
+                                            <Col>                                                
                                                 <div className="d-flex flex-wrap" style={{ gap: '5px' }}>
                                                     {pokemon?.types?.map((t: any, i: number) => 
-                                                        <TypePill type={t.type.name} key={`pokemonType${i}`}></TypePill>
+                                                        <div className="mb-1 mb-md-0">
+                                                            <TypePill type={t.type.name} key={`pokemonType${i}`}></TypePill>
+                                                        </div>
                                                     )}
                                                 </div>
 
@@ -180,129 +182,129 @@ export default function PokemonDetail() {
                                             <div style={{ width: '110px', maxWidth: '110px' }}>HP</div>
                                         </Col>
                                         <Col bsPrefix="col-auto" className="order-12 order-md-2">
-                                            <div style={{ width: '30px' }}>
+                                            <div style={{ width: '35px' }}>
                                                 {pokemon?.stats?.[0]?.base_stat}
                                             </div>
                                         </Col>
                                         <Col bsPrefix="col" className="d-flex align-items-center order-3">
                                             <ProgressBar className="w-100" variant={getBarColorClass(pokemon?.stats?.[0]?.base_stat)} now={pokemon?.stats?.[0]?.base_stat / 200 * 100} /></Col>
                                         <Col bsPrefix="col-auto" className="d-none d-md-block order-4">
-                                            <div style={{ width: '30px' }}>
+                                            <div style={{ width: '35px' }}>
                                                 {useStatCalculator(pokemon?.stats?.[0]?.base_stat, pokemon?.stats?.[0]?.stat?.name, -1)}
                                             </div>
                                         </Col>
                                         <Col bsPrefix="col-auto" className="d-none d-md-block order-5">
-                                            <div style={{ width: '30px' }}>
+                                            <div style={{ width: '35px' }}>
                                                 {useStatCalculator(pokemon?.stats?.[0]?.base_stat, pokemon?.stats?.[0]?.stat?.name, 1)}
                                             </div>
                                         </Col>
                                     </Row>
                                     <Row>
                                         <Col bsPrefix="col-auto" className="order-1">
-                                            <div style={{ width: '110px', maxWidth: '110px' }}>Attack</div>
+                                            <div style={{ width: '110px', maxWidth: '110px' }}>ATTACK</div>
                                         </Col>
                                         <Col bsPrefix="col-auto" className="order-12 order-md-2">
-                                            <div style={{ width: '30px' }}>
+                                            <div style={{ width: '35px' }}>
                                                 {pokemon?.stats?.[1]?.base_stat}
                                             </div>
                                         </Col>
                                         <Col bsPrefix="col" className="d-flex align-items-center order-3">
                                             <ProgressBar className="w-100" variant={getBarColorClass(pokemon?.stats?.[1]?.base_stat)} now={pokemon?.stats?.[1]?.base_stat / 200 * 100} /></Col>
                                         <Col bsPrefix="col-auto" className="d-none d-md-block order-4">
-                                            <div style={{ width: '30px' }}>
+                                            <div style={{ width: '35px' }}>
                                                 {useStatCalculator(pokemon?.stats?.[1]?.base_stat, pokemon?.stats?.[1]?.stat?.name, -1)}
                                             </div>
                                         </Col>
                                         <Col bsPrefix="col-auto" className="d-none d-md-block order-5">
-                                            <div style={{ width: '30px' }}>
+                                            <div style={{ width: '35px' }}>
                                                 {useStatCalculator(pokemon?.stats?.[1]?.base_stat, pokemon?.stats?.[1]?.stat?.name, 1)}
                                             </div>
                                         </Col>
                                     </Row>
                                     <Row>
                                         <Col bsPrefix="col-auto" className="order-1">
-                                            <div style={{ width: '110px', maxWidth: '110px' }}>Defense</div>
+                                            <div style={{ width: '110px', maxWidth: '110px' }}>DEFENSE</div>
                                         </Col>
                                         <Col bsPrefix="col-auto" className="order-12 order-md-2">
-                                            <div style={{ width: '30px' }}>
+                                            <div style={{ width: '35px' }}>
                                                 {pokemon?.stats?.[2]?.base_stat}
                                             </div>
                                         </Col>
                                         <Col bsPrefix="col" className="d-flex align-items-center order-3">
                                             <ProgressBar className="w-100" variant={getBarColorClass(pokemon?.stats?.[2]?.base_stat)} now={pokemon?.stats?.[2]?.base_stat / 200 * 100} /></Col>
                                         <Col bsPrefix="col-auto" className="d-none d-md-block order-4">
-                                            <div style={{ width: '30px' }}>
+                                            <div style={{ width: '35px' }}>
                                                 {useStatCalculator(pokemon?.stats?.[2]?.base_stat, pokemon?.stats?.[2]?.stat?.name, -1)}
                                             </div>
                                         </Col>
                                         <Col bsPrefix="col-auto" className="d-none d-md-block order-5">
-                                            <div style={{ width: '30px' }}>
+                                            <div style={{ width: '35px' }}>
                                                 {useStatCalculator(pokemon?.stats?.[2]?.base_stat, pokemon?.stats?.[2]?.stat?.name, 1)}
                                             </div>
                                         </Col>
                                     </Row>
                                     <Row>
                                         <Col bsPrefix="col-auto" className="order-1">
-                                            <div style={{ width: '110px', maxWidth: '110px' }}>Special attack</div>
+                                            <div style={{ width: '110px', maxWidth: '110px' }}>SP. ATK</div>
                                         </Col>
                                         <Col bsPrefix="col-auto" className="order-12 order-md-2">
-                                            <div style={{ width: '30px' }}>
+                                            <div style={{ width: '35px' }}>
                                                 {pokemon?.stats?.[3]?.base_stat}
                                             </div>
                                         </Col>
                                         <Col bsPrefix="col" className="d-flex align-items-center order-3">
                                             <ProgressBar className="w-100" variant={getBarColorClass(pokemon?.stats?.[3]?.base_stat)} now={pokemon?.stats?.[3]?.base_stat / 200 * 100} /></Col>
                                         <Col bsPrefix="col-auto" className="d-none d-md-block order-4">
-                                            <div style={{ width: '30px' }}>
+                                            <div style={{ width: '35px' }}>
                                                 {useStatCalculator(pokemon?.stats?.[3]?.base_stat, pokemon?.stats?.[3]?.stat?.name, -1)}
                                             </div>
                                         </Col>
                                         <Col bsPrefix="col-auto" className="d-none d-md-block order-5">
-                                            <div style={{ width: '30px' }}>
+                                            <div style={{ width: '35px' }}>
                                                 {useStatCalculator(pokemon?.stats?.[3]?.base_stat, pokemon?.stats?.[3]?.stat?.name, 1)}
                                             </div>
                                         </Col>
                                     </Row>
                                     <Row>
                                         <Col bsPrefix="col-auto" className="order-1">
-                                            <div style={{ width: '110px', maxWidth: '110px' }}>Special defense</div>
+                                            <div style={{ width: '110px', maxWidth: '110px' }}>SP. DEF</div>
                                         </Col>
                                         <Col bsPrefix="col-auto" className="order-12 order-md-2">
-                                            <div style={{ width: '30px' }}>
+                                            <div style={{ width: '35px' }}>
                                                 {pokemon?.stats?.[4]?.base_stat}
                                             </div>
                                         </Col>
                                         <Col bsPrefix="col" className="d-flex align-items-center order-3">
                                             <ProgressBar className="w-100" variant={getBarColorClass(pokemon?.stats?.[4]?.base_stat)} now={pokemon?.stats?.[4]?.base_stat / 200 * 100} /></Col>
                                         <Col bsPrefix="col-auto" className="d-none d-md-block order-4">
-                                            <div style={{ width: '30px' }}>
+                                            <div style={{ width: '35px' }}>
                                                 {useStatCalculator(pokemon?.stats?.[4]?.base_stat, pokemon?.stats?.[4]?.stat?.name, -1)}
                                             </div>
                                         </Col>
                                         <Col bsPrefix="col-auto" className="d-none d-md-block order-5">
-                                            <div style={{ width: '30px' }}>
+                                            <div style={{ width: '35px' }}>
                                                 {useStatCalculator(pokemon?.stats?.[4]?.base_stat, pokemon?.stats?.[4]?.stat?.name, 1)}
                                             </div>
                                         </Col>
                                     </Row>
                                     <Row>
                                         <Col bsPrefix="col-auto" className="order-1">
-                                            <div style={{ width: '110px', maxWidth: '110px' }}>Speed</div>
+                                            <div style={{ width: '110px', maxWidth: '110px' }}>SPEED</div>
                                         </Col>
                                         <Col bsPrefix="col-auto" className="order-12 order-md-2">
-                                            <div style={{ width: '30px' }}>
+                                            <div style={{ width: '35px' }}>
                                                 {pokemon?.stats?.[5]?.base_stat}
                                             </div>
                                         </Col>
                                         <Col bsPrefix="col" className="d-flex align-items-center order-3">
                                             <ProgressBar className="w-100" variant={getBarColorClass(pokemon?.stats?.[5]?.base_stat)} now={pokemon?.stats?.[5]?.base_stat / 200 * 100} /></Col>
                                         <Col bsPrefix="col-auto" className="d-none d-md-block order-4">
-                                            <div style={{ width: '30px' }}>
+                                            <div style={{ width: '35px' }}>
                                                 {useStatCalculator(pokemon?.stats?.[5]?.base_stat, pokemon?.stats?.[5]?.stat?.name, -1)}
                                             </div>
                                         </Col>
                                         <Col bsPrefix="col-auto" className="d-none d-md-block order-5">
-                                            <div style={{ width: '30px' }}>
+                                            <div style={{ width: '35px' }}>
                                                 {useStatCalculator(pokemon?.stats?.[5]?.base_stat, pokemon?.stats?.[5]?.stat?.name, 1)}
                                             </div>
                                         </Col>
@@ -310,21 +312,21 @@ export default function PokemonDetail() {
                                     <Row>
                                         <Col bsPrefix="col-auto" className="order-1">
                                             <div style={{ width: '110px', maxWidth: '110px' }}>
-                                                Total
+                                                TOTAL
                                             </div>
                                         </Col>
                                         <Col bsPrefix="col-auto" className="order-12 order-md-2">
-                                            <div className="font-weight-bolder" style={{ width: '30px' }}>
+                                            <div className="font-weight-bolder" style={{ width: '35px' }}>
                                                 {pokemon?.stats?.reduce((save: number, curr: any) => save + curr?.base_stat, 0)}
                                             </div>
                                         </Col>
                                         <Col bsPrefix="col" className="d-flex align-items-center order-3">
                                         </Col>
                                         <Col bsPrefix="col-auto" className="d-none d-md-block order-4">
-                                                Min
+                                                MIN
                                         </Col>
                                         <Col bsPrefix="col-auto" className="d-none d-md-block order-5">
-                                                Max
+                                                MAX
                                         </Col>
                                     </Row>
                                 </div>
@@ -341,13 +343,13 @@ export default function PokemonDetail() {
                                     <Row>
                                         <Col>EV yield</Col>
                                         <Col>
-                                            <div className="d-flex" style={{ gap: '10px' }}>
-                                                {pokemon?.stats?.[0].effort ? <span>{pokemon?.stats?.[0].effort} HP</span> : ''}
-                                                {pokemon?.stats?.[1].effort ? <span>{pokemon?.stats?.[1].effort} Attack</span> : ''}
-                                                {pokemon?.stats?.[2].effort ? <span>{pokemon?.stats?.[2].effort} Defense</span> : ''}
-                                                {pokemon?.stats?.[3].effort ? <span>{pokemon?.stats?.[3].effort} Special attack</span> : ''}
-                                                {pokemon?.stats?.[4].effort ? <span>{pokemon?.stats?.[4].effort} Special defense</span> : ''}
-                                                {pokemon?.stats?.[5].effort ? <span>{pokemon?.stats?.[5].effort} Speed</span> : ''}
+                                            <div className="d-flex flex-wrap" style={{ gap: '10px' }}>
+                                                {pokemon?.stats?.[0].effort ? <span className="mr-1 mr-md-0">{pokemon?.stats?.[0].effort} HP</span> : ''}
+                                                {pokemon?.stats?.[1].effort ? <span className="mr-1 mr-md-0">{pokemon?.stats?.[1].effort} ATTACK</span> : ''}
+                                                {pokemon?.stats?.[2].effort ? <span className="mr-1 mr-md-0">{pokemon?.stats?.[2].effort} DEFENSE</span> : ''}
+                                                {pokemon?.stats?.[3].effort ? <span className="mr-1 mr-md-0">{pokemon?.stats?.[3].effort} SP. ATK</span> : ''}
+                                                {pokemon?.stats?.[4].effort ? <span className="mr-1 mr-md-0">{pokemon?.stats?.[4].effort} SP. DEF</span> : ''}
+                                                {pokemon?.stats?.[5].effort ? <span className="mr-1 mr-md-0">{pokemon?.stats?.[5].effort} SPEED</span> : ''}
                                             </div>
                                         </Col>
                                     </Row>
@@ -411,10 +413,10 @@ export default function PokemonDetail() {
                                         <Col bsPrefix="col-auto" style={{width: '100px'}} className="text-capitalize">{m.levelLearnedAt > 0 ? m.levelLearnedAt : m.method}</Col>
                                         <Col bsPrefix="col-4" className="text-capitalize" >{m?.name.replaceAll('-', ' ')}</Col>
                                         <Col style={{width: '80px'}}>
-                                            {/* <div style={{ width: '80px', backgroundColor: (TypeColor as { [key: string]: string })[m.type] }} className="mx-1 px-2 rounded-pill shadow" key={'mt' + i}>
-                                                 <div className="text-white text-capitalize text-center ">{m.type}</div>
-                                            </div>                                           */}
-                                            <TypePill type={m.type}></TypePill>
+                                            <div className="mb-1 mb-md-0">
+                                                <TypePill type={m.type}></TypePill>
+                                            </div>
+                                            
                                         </Col>
                                        
                                       
