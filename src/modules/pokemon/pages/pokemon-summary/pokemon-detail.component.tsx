@@ -97,15 +97,15 @@ export default function PokemonDetail() {
             <div className="p-4 d-flex flex-column">
                 <Row>
                     <Col bsPrefix="col-12">
-                        <Card className="my-2 my-md-0 shadow border-0">
+                        <Card className="my-2 shadow border-0">
 
                             <Card.Body>
 
                                 <Row>
-                                    <Col bsPrefix="col-12 col-md-6">
-                                        <img className="w-100" alt={`${pokemon?.name}`} src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${index}.png`} />
+                                    <Col bsPrefix="col-12 col-sm-6">
+                                        <img style={{width: '250px'}} alt={`${pokemon?.name}`} src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${index}.png`} />
                                     </Col>
-                                    <Col bsPrefix="col-12 col-md-6 d-flex flex-column" style={{ gap: '10px' }}>
+                                    <Col bsPrefix="col-12 col-sm-6 d-flex flex-column" style={{ gap: '10px' }}>
                                         <Row>
                                             <Col>
                                                 <div className="text-capitalize h3">{pokemon?.name}</div>
@@ -173,7 +173,7 @@ export default function PokemonDetail() {
                 </Row>
                 <Row>
                     <Col bsPrefix="col-12">
-                        <Card className="my-2 my-md-0 w-100 shadow border-0">
+                        <Card className="my-2  w-100 shadow border-0">
                             <Card.Body>
                                 <div className="h3">Base stats</div>
                                 <div className="d-flex flex-column" style={{ gap: '20px' }}>
@@ -336,7 +336,7 @@ export default function PokemonDetail() {
                 </Row>
                 <Row>
                     <Col bsPrefix="col-12">
-                        <Card className="my-2 my-md-0 w-100 shadow border-0">
+                        <Card className="my-2  w-100 shadow border-0">
                             <Card.Body>
                                 <div className="h3">Training</div>
                                 <div className="d-flex flex-column" style={{ gap: '20px' }}>
@@ -393,7 +393,7 @@ export default function PokemonDetail() {
 
                 <Row noGutters>
                     <Col bsPrefix="col-12">
-                        <Card className="my-2 my-md-0 w-100 shadow border-0">
+                        <Card className="my-2  w-100 shadow border-0">
                             <Card.Body>
                                 <div className="h3">Moveset</div>
                                 <Row noGutters className="h6" >
@@ -437,7 +437,7 @@ export default function PokemonDetail() {
 
                 <Row noGutters>
                     <Col bsPrefix="col-12">
-                        <Card className="my-2 my-md-0 w-100 shadow border-0">
+                        <Card className="my-2  w-100 shadow border-0">
                             <Card.Body>
                                 <div className="h3">Evolution</div>
                                 <Row noGutters  >
