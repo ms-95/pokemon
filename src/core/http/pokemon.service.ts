@@ -36,17 +36,7 @@ export default function PokemonService() {
         }));
         
         const formattedMoveset = formatMoveset(pokemon.moves, moves);
-        const formattedEvolution = formatEvolutionChain(evolution.chain);
-        console.log({
-            ...pokemon,
-            base_happiness: species.base_happiness,
-            capture_rate: species.capture_rate,
-            gender_rate: species.gender_rate,
-            egg_groups: species.egg_groups,
-            hatch_counter: species.hatch_counter,
-            moves: formattedMoveset,
-            chain: formattedEvolution
-        });
+        const formattedEvolution = formatEvolutionChain(evolution.chain);      
 
         return {
             ...pokemon,
