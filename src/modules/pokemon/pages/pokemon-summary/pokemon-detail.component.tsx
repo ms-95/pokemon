@@ -94,10 +94,10 @@ export default function PokemonDetail() {
 
                 </Row>
             </div>
-            <div className="p-4 d-flex flex-column" style={{ gap: '10px' }}>
+            <div className="p-4 d-flex flex-column">
                 <Row>
                     <Col bsPrefix="col-12">
-                        <Card className="shadow border-0">
+                        <Card className="my-2 my-md-0 shadow border-0">
 
                             <Card.Body>
 
@@ -173,7 +173,7 @@ export default function PokemonDetail() {
                 </Row>
                 <Row>
                     <Col bsPrefix="col-12">
-                        <Card className="w-100 shadow border-0">
+                        <Card className="my-2 my-md-0 w-100 shadow border-0">
                             <Card.Body>
                                 <div className="h3">Base stats</div>
                                 <div className="d-flex flex-column" style={{ gap: '20px' }}>
@@ -336,7 +336,7 @@ export default function PokemonDetail() {
                 </Row>
                 <Row>
                     <Col bsPrefix="col-12">
-                        <Card className="w-100 shadow border-0">
+                        <Card className="my-2 my-md-0 w-100 shadow border-0">
                             <Card.Body>
                                 <div className="h3">Training</div>
                                 <div className="d-flex flex-column" style={{ gap: '20px' }}>
@@ -393,7 +393,7 @@ export default function PokemonDetail() {
 
                 <Row noGutters>
                     <Col bsPrefix="col-12">
-                        <Card className="w-100 shadow border-0">
+                        <Card className="my-2 my-md-0 w-100 shadow border-0">
                             <Card.Body>
                                 <div className="h3">Moveset</div>
                                 <Row noGutters className="h6" >
@@ -437,7 +437,7 @@ export default function PokemonDetail() {
 
                 <Row noGutters>
                     <Col bsPrefix="col-12">
-                        <Card className="w-100 shadow border-0">
+                        <Card className="my-2 my-md-0 w-100 shadow border-0">
                             <Card.Body>
                                 <div className="h3">Evolution</div>
                                 <Row noGutters  >
