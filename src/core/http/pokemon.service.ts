@@ -1,5 +1,8 @@
 import axios from "axios";
+import { Category } from "../../shared/category.enum";
+import { Type } from "../../shared/type.enum";
 import { extractId } from "../../shared/utils/extract-id.utils";
+import upperFirstCase from "../../shared/utils/upper-first-case.utils";
 import PokemonRepository from "./pokemon.repository";
 
 export default function PokemonService() {
@@ -37,9 +40,18 @@ export default function PokemonService() {
         
         const formattedMoveset = formatMoveset(pokemon.moves, moves);
         const formattedEvolution = formatEvolutionChain(evolution.chain);      
-
+        console.log(pokemon.types);
+        
         return {
             ...pokemon,
+            types: pokemon.types.map((t: any) => ({
+                ...t,
+                type: {
+                    name: upperFirstCase(t.type.name),
+                    value: Type[t.type.name]
+                }
+               
+            })),
             base_happiness: species.base_happiness,
             capture_rate: species.capture_rate,
             gender_rate: species.gender_rate,
@@ -61,14 +73,18 @@ export default function PokemonService() {
     const formatMoveset = (movesetSummary: any[], movesetDetail: any[]) => {
         let moveset = movesetSummary.map((m: any, i :number) => ({
             id: movesetDetail[i].id,
-            name: m?.move.name,
+            name: upperFirstCase(movesetDetail[i].name),
             levelLearnedAt: m?.version_group_details[m?.version_group_details.length - 1]?.level_learned_at,
             method: m?.version_group_details[m?.version_group_details.length - 1]?.move_learn_method.name,
-            type: movesetDetail[i].type.name,
             power: movesetDetail[i].power,
             pp: movesetDetail[i].pp,
-            priority: movesetDetail[i].priority,
-            damageClass: movesetDetail[i].damage_class.name,
+            priority: movesetDetail[i].priority,            
+            type: {...movesetDetail[i].type,  name: upperFirstCase(movesetDetail[i].type.name), value: Type[movesetDetail[i].type.name]},
+            damage_class: {
+                ...movesetDetail[i].damage_class,  
+                name: upperFirstCase(movesetDetail[i].damage_class?.name || ''), 
+                value: Category[movesetDetail[i].damage_class?.name]
+            },
             accuracy: movesetDetail[i].accuracy,
         }));;
         moveset.sort((a: any, b: any) => a.method.localeCompare(b.method));
