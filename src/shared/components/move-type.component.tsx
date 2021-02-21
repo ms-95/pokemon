@@ -43,6 +43,6 @@ export default function MoveType(props: any) {
     } 
     
     return (
-        <img src={getTypeIcon(props.typeValue)}/>
+        <img title={props.typeName} src={getTypeIcon(props.typeValue)}/>
     );
 }

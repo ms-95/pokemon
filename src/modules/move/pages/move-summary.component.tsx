@@ -8,6 +8,7 @@ import Physical from '../../../assets/images/physical.png';
 import Speical from '../../../assets/images/special.png';
 import Status from '../../../assets/images/status.png';
 import {TypeIcon} from '../../../assets/images/index';
+import MoveType from "../../../shared/components/move-type.component";
 export default function MoveSummary() {
     const moveService = MoveService();
     const types = Object.keys(Type).filter((x: any) => isNaN(Number(x))).map((t: any) => ({
@@ -63,7 +64,7 @@ export default function MoveSummary() {
                         <Card className="my-2 shadow border-0">
 
                             <Card.Body>
-                                <Row className="bg-secondary shadow-sm rounded">
+                                <Row className="border-bottom">
                                     <Col style={{ minWidth: '150px', maxWidth: '150px' }}>Name</Col>
                                     <Col style={{ minWidth: '90px', maxWidth: '90px' }}>Type</Col>
                                     <Col className="d-none d-sm-block" style={{ minWidth: '70px', maxWidth: '70px' }}>
@@ -72,23 +73,28 @@ export default function MoveSummary() {
                                     <Col style={{ minWidth: '60px', maxWidth: '60px' }}>Pow</Col>
                                     <Col className="d-none d-sm-block" style={{ minWidth: '60px', maxWidth: '60px' }}>Acc.</Col>
                                     <Col className="d-none d-sm-block" style={{ minWidth: '60px', maxWidth: '60px' }}>PP</Col>
-                                    <Col  className="d-none d-md-block">Effects</Col>
+                                    <Col  className="d-none d-lg-block">Effects</Col>
                                     <Col></Col>
                                 </Row>
                                {
                                 moves.map((m: any) => 
                                     <Row className="py-2 border-bottom">                                        
                                         <Col style={{minWidth: '150px', maxWidth: '150px'}}>{m.name}</Col>
-                                        <Col style={{minWidth: '90px', maxWidth: '90px'}}>{m?.type.name}</Col>
+                                        <Col style={{minWidth: '90px', maxWidth: '90px'}}>
+                                         
+                                        <MoveType typeName={m?.type.name} typeValue={m?.type.value}></MoveType>
+                                          
+                                            </Col>
                                         <Col style={{minWidth: '70px', maxWidth: '70px'}} className="d-none d-sm-block">
+                                           
                                             <img style={{objectFit: 'scale-down'}} src={m?.damage_class?.value === Category.physical ? Physical : m?.damage_class?.value === Category.special ? Speical : Status}/>
                                         </Col>
                                         <Col style={{minWidth: '60px', maxWidth: '60px'}}>{m.power}</Col>
                                         <Col className="d-none d-sm-block" style={{minWidth: '60px', maxWidth: '60px'}}>{m.accuracy}</Col>
                                         <Col className="d-none d-sm-block" style={{minWidth: '60px', maxWidth: '60px'}}>{m.pp}</Col>
-                                        <Col bsPrefix="col-8 col-md my-1 my-sm-0" className="bg-light shadow-sm">{m?.flavor_text_entries?.[0]?.flavor_text}</Col>
-                                        <Col bsPrefix="col-4" className="d-flex align-items-center">
-                                            <Button variant="outline-primary">Primary</Button>
+                                        <Col bsPrefix="col-8 col-lg my-1 my-sm-0" className="bg-light shadow-sm">{m?.flavor_text_entries?.[0]?.flavor_text}</Col>
+                                        <Col bsPrefix="col-4 col-lg-auto" className="d-flex align-items-center">
+                                            <Button variant="primary" className="shadow">View</Button>
                                         </Col>
                                     </Row>
                                 )}
