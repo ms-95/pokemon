@@ -1,39 +1,39 @@
-import BugIcon from './bug.svg';
-import DarkIcon from './dark.svg';
-import DragonIcon from './dragon.svg';
-import ElectricIcon from './electric.svg';
-import FairyIcon from './fairy.svg';
-import FightingIcon from './fighting.svg';
-import FireIcon from './fire.svg';
-import FlyingIcon from './flying.svg';
-import GhostIcon from './ghost.svg';
-import GrassIcon from './grass.svg';
-import GroundIcon from './ground.svg';
-import IceIcon from './ice.svg';
-import NormalIcon from './normal.svg';
-import PoisonIcon from './poison.svg';
-import PsychicIcon from './psychic.svg';
-import RockIcon from './rock.svg';
-import SteelIcon from './steel.svg';
-import WaterIcon from './water.svg';
+import Bug from './bug.svg';
+import Dark from './dark.svg';
+import Dragon from './dragon.svg';
+import Electric from './electric.svg';
+import Fairy from './fairy.svg';
+import Fighting from './fighting.svg';
+import Fire from './fire.svg';
+import Flying from './flying.svg';
+import Ghost from './ghost.svg';
+import Grass from './grass.svg';
+import Ground from './ground.svg';
+import Ice from './ice.svg';
+import Normal from './normal.svg';
+import Poison from './poison.svg';
+import Psychic from './psychic.svg';
+import Rock from './rock.svg';
+import Steel from './steel.svg';
+import Water from './water.svg';
 
 export {
-    BugIcon,
-    DarkIcon,
-    DragonIcon,
-    ElectricIcon,
-    FairyIcon,
-    FightingIcon,
-    FireIcon,
-    FlyingIcon,
-    GhostIcon,
-    GrassIcon,
-    GroundIcon,
-    IceIcon,
-    NormalIcon,
-    PoisonIcon,
-    PsychicIcon,
-    RockIcon,
-    SteelIcon,
-    WaterIcon,
+    Bug,
+    Dark,
+    Dragon,
+    Electric,
+    Fairy,
+    Fighting,
+    Fire,
+    Flying,
+    Ghost,
+    Grass,
+    Ground,
+    Ice,
+    Normal,
+    Poison,
+    Psychic,
+    Rock,
+    Steel,
+    Water,
 };
