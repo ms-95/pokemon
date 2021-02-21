@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IdExtractor } from "../../shared/utils/id-extractor.utils";
+import { extractId } from "../../shared/utils/extract-id.utils";
 import PokemonRepository from "./pokemon.repository";
 
 export default function PokemonService() {
@@ -30,9 +30,9 @@ export default function PokemonService() {
     const getPokemon = async (index: number) => {
         const pokemon = await pokemonRepository.getPokemon(index).then(res => res.data);
         const species = await pokemonRepository.getSpecies(index).then(res => res.data);
-        const evolution = await pokemonRepository.getEvolution(IdExtractor(species?.evolution_chain.url)).then(res => res.data);
+        const evolution = await pokemonRepository.getEvolution(extractId(species?.evolution_chain.url)).then(res => res.data);
         const moves = await Promise.all<any>(pokemon.moves.map((m: any) => {
-            return pokemonRepository.getMove(IdExtractor(m.move.url)).then((res) => res.data);
+            return pokemonRepository.getMove(extractId(m.move.url)).then((res) => res.data);
         }));
         
         const formattedMoveset = formatMoveset(pokemon.moves, moves);

@@ -7,7 +7,7 @@ import PokemonService from "../../../../core/http/pokemon.service";
 import { TypeColor } from "../../../../shared/type-color.enum";
 import NumberFormat from 'react-number-format';
 import useStatCalculator from "../../../../shared/utils/use-stat-calculator.utils";
-import useTextSentence from "../../../../shared/utils/use-text-sentence.utils";
+import upperFirstCase from "../../../../shared/utils/upper-first-case.utils";
 import Status from'../../../../assets/images/status.png';
 import Physical from'../../../../assets/images/physical.png';
 import Special from'../../../../assets/images/special.png';
