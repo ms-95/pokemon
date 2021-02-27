@@ -34,21 +34,19 @@ export default function FabMenu() {
             <img src={PokedexIcon} style={{width: '30px'}}/>
           </Action>
           <Action
-            text="Item"
+            text="Move"            
             style={{ backgroundColor: '#2775ae' }}
-
-            onClick={(e) => { history.push('/item'); }}
-          >
-            <img src={BagIcon} style={{ width: '30px'}} />
-          </Action>
-          <Action
-            text="Move"
-            style={{ backgroundColor: '#6027ae' }}
-
             onClick={(e) => { history.push('/move'); }}
           >
             <img src={TmCaseIcon} />
           </Action>
+          <Action
+            text="Item"
+            style={{ backgroundColor: '#6027ae' }}
+            onClick={(e) => { history.push('/item'); }}          >
+            <img src={BagIcon} style={{ width: '30px'}} />
+          </Action>
+          
           <Action
             text="Ability"
             style={{ backgroundColor: '#ae2775' }}

@@ -1,0 +1,13 @@
+<svg width="27" height="23" viewBox="0 0 27 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+<ellipse cx="13.3335" cy="11.3378" rx="9.74253" ry="12.0896" transform="rotate(-98.0407 13.3335 11.3378)" fill="#7B7B7B"/>
+<ellipse cx="13.3335" cy="11.3378" rx="9.35282" ry="11.606" transform="rotate(-98.0407 13.3335 11.3378)" fill="#7B7B7B"/>
+<ellipse cx="13.3335" cy="11.3378" rx="8.96312" ry="11.1224" transform="rotate(-98.0407 13.3335 11.3378)" fill="white"/>
+<mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="1" y="0" width="26" height="22">
+<ellipse cx="13.8123" cy="11.2702" rx="8.96312" ry="11.1224" transform="rotate(-98.0407 13.8123 11.2702)" fill="white"/>
+</mask>
+<g mask="url(#mask0)">
+<rect x="15.0661" y="20.1452" width="17.9262" height="11.1224" transform="rotate(-98.0407 15.0661 20.1452)" fill="#7B7B7B"/>
+</g>
+<ellipse cx="14.0664" cy="15.6619" rx="4.57899" ry="5.68211" transform="rotate(-98.0407 14.0664 15.6619)" fill="white"/>
+<ellipse cx="13.0249" cy="6.56016" rx="4.57899" ry="5.68211" transform="rotate(-98.0407 13.0249 6.56016)" fill="#7B7B7B"/>
+</svg>

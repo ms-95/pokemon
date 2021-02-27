@@ -1,18 +1,32 @@
 import axios from "axios";
-import { IdExtractor } from "../../shared/utils/id-extractor.utils";
+import { Category } from "../../shared/category.enum";
+import { Type } from "../../shared/type.enum";
+import { extractId } from "../../shared/utils/extract-id.utils";
+import upperFirstCase from "../../shared/utils/upper-first-case.utils";
 import PokemonRepository from "./pokemon.repository";
 
 export default function PokemonService() {
     const pokemonRepository = PokemonRepository(); 
 
     const getPokemonList = async() => {
-        const list = await pokemonRepository.getPokemons().then(res => {
-            const data = res.data.results.map((r: any, i: number) => ({
-                index: i + 1,
-                name: r.name,
-                url: r.url,
-            }));
-            const sortedList = [
+     
+        const data = await Promise.all(Array.from({length: Number(process.env.REACT_APP_POKEMON_MAX)}).map((d: any, i: number)  => pokemonRepository.getPokemon(i+1).catch(ex => (null))))
+                        .then((res: any) => {
+                                                         
+                            return res.map((r: any) => r ? {
+                                ...r.data,
+                                name: upperFirstCase(r.data.name),
+                                types: r.data.types.map((t: any) => ({
+                                    ...t,
+                                    type: {
+                                        name: upperFirstCase(t.type.name),
+                                        value: Type[t.type.name]
+                                    }                                           
+                                })),
+                            } : null);
+                        });
+       
+       const sortedList = [
                 data.slice(0, 151),
                 data.slice(151, 251),
                 data.slice(251, 386),
@@ -23,23 +37,30 @@ export default function PokemonService() {
                 data.slice(809)
             ];            
             return sortedList;
-        });
-        return list;
 
     }
     const getPokemon = async (index: number) => {
         const pokemon = await pokemonRepository.getPokemon(index).then(res => res.data);
         const species = await pokemonRepository.getSpecies(index).then(res => res.data);
-        const evolution = await pokemonRepository.getEvolution(IdExtractor(species?.evolution_chain.url)).then(res => res.data);
+        const evolution = await pokemonRepository.getEvolution(extractId(species?.evolution_chain.url)).then(res => res.data);
         const moves = await Promise.all<any>(pokemon.moves.map((m: any) => {
-            return pokemonRepository.getMove(IdExtractor(m.move.url)).then((res) => res.data);
+            return pokemonRepository.getMove(extractId(m.move.url)).then((res) => res.data);
         }));
         
         const formattedMoveset = formatMoveset(pokemon.moves, moves);
         const formattedEvolution = formatEvolutionChain(evolution.chain);      
-
+        console.log(pokemon.types);
+        
         return {
             ...pokemon,
+            types: pokemon.types.map((t: any) => ({
+                ...t,
+                type: {
+                    name: upperFirstCase(t.type.name),
+                    value: Type[t.type.name]
+                }
+               
+            })),
             base_happiness: species.base_happiness,
             capture_rate: species.capture_rate,
             gender_rate: species.gender_rate,
@@ -61,14 +82,18 @@ export default function PokemonService() {
     const formatMoveset = (movesetSummary: any[], movesetDetail: any[]) => {
         let moveset = movesetSummary.map((m: any, i :number) => ({
             id: movesetDetail[i].id,
-            name: m?.move.name,
+            name: upperFirstCase(movesetDetail[i].name),
             levelLearnedAt: m?.version_group_details[m?.version_group_details.length - 1]?.level_learned_at,
             method: m?.version_group_details[m?.version_group_details.length - 1]?.move_learn_method.name,
-            type: movesetDetail[i].type.name,
             power: movesetDetail[i].power,
             pp: movesetDetail[i].pp,
-            priority: movesetDetail[i].priority,
-            damageClass: movesetDetail[i].damage_class.name,
+            priority: movesetDetail[i].priority,            
+            type: {...movesetDetail[i].type,  name: upperFirstCase(movesetDetail[i].type.name), value: Type[movesetDetail[i].type.name]},
+            damage_class: {
+                ...movesetDetail[i].damage_class,  
+                name: upperFirstCase(movesetDetail[i].damage_class?.name || ''), 
+                value: Category[movesetDetail[i].damage_class?.name]
+            },
             accuracy: movesetDetail[i].accuracy,
         }));;
         moveset.sort((a: any, b: any) => a.method.localeCompare(b.method));

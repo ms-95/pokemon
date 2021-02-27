@@ -7,12 +7,15 @@ import PokemonService from "../../../../core/http/pokemon.service";
 import { TypeColor } from "../../../../shared/type-color.enum";
 import NumberFormat from 'react-number-format';
 import useStatCalculator from "../../../../shared/utils/use-stat-calculator.utils";
-import useTextSentence from "../../../../shared/utils/use-text-sentence.utils";
-import Status from'../../../../assets/images/status.png';
-import Physical from'../../../../assets/images/physical.png';
-import Special from'../../../../assets/images/special.png';
+import upperFirstCase from "../../../../shared/utils/upper-first-case.utils";
+import Status from '../../../../assets/images/status.svg';
+import Physical from '../../../../assets/images/physical.svg';
+import Special from '../../../../assets/images/special.svg';
 import SpinnerContext from "../../../../shared/contexts/spinner.context";
 import TypePill from "../../../../shared/components/type-pill.component";
+import { Category } from "../../../../shared/category.enum";
+import MoveType from "../../../../shared/components/move-type.component";
+import PokemonType from "../../../../shared/components/pokemon-type.component";
 
 export default function PokemonDetail() {
     const {setIsLoading} = useContext(SpinnerContext);
@@ -122,10 +125,10 @@ export default function PokemonDetail() {
                                         <Row>
                                             <Col>Type</Col>
                                             <Col>                                                
-                                                <div className="d-flex flex-wrap" style={{ gap: '5px' }}>
+                                                <div className="d-flex flex-wrap">
                                                     {pokemon?.types?.map((t: any, i: number) => 
-                                                        <div className="mb-1 mb-md-0" key={`pokemonType${i}`}>
-                                                            <TypePill type={t.type.name} ></TypePill>
+                                                        <div className="" key={`pokemonType${i}`}>
+                                                            <MoveType typeName={t?.type.name} typeValue={t?.type.value}></MoveType>
                                                         </div>
                                                     )}
                                                 </div>
@@ -203,7 +206,7 @@ export default function PokemonDetail() {
                                     </Row>
                                     <Row>
                                         <Col bsPrefix="col-auto" className="order-1">
-                                            <div style={{ width: '110px', maxWidth: '110px' }}>ATTACK</div>
+                                            <div style={{ width: '110px', maxWidth: '110px' }}>ATK</div>
                                         </Col>
                                         <Col bsPrefix="col-auto" className="order-12 order-md-2">
                                             <div style={{ width: '35px' }}>
@@ -225,7 +228,7 @@ export default function PokemonDetail() {
                                     </Row>
                                     <Row>
                                         <Col bsPrefix="col-auto" className="order-1">
-                                            <div style={{ width: '110px', maxWidth: '110px' }}>DEFENSE</div>
+                                            <div style={{ width: '110px', maxWidth: '110px' }}>DEF</div>
                                         </Col>
                                         <Col bsPrefix="col-auto" className="order-12 order-md-2">
                                             <div style={{ width: '35px' }}>
@@ -247,7 +250,7 @@ export default function PokemonDetail() {
                                     </Row>
                                     <Row>
                                         <Col bsPrefix="col-auto" className="order-1">
-                                            <div style={{ width: '110px', maxWidth: '110px' }}>SP. ATK</div>
+                                            <div style={{ width: '110px', maxWidth: '110px' }}>S. ATK</div>
                                         </Col>
                                         <Col bsPrefix="col-auto" className="order-12 order-md-2">
                                             <div style={{ width: '35px' }}>
@@ -269,7 +272,7 @@ export default function PokemonDetail() {
                                     </Row>
                                     <Row>
                                         <Col bsPrefix="col-auto" className="order-1">
-                                            <div style={{ width: '110px', maxWidth: '110px' }}>SP. DEF</div>
+                                            <div style={{ width: '110px', maxWidth: '110px' }}>S. DEF</div>
                                         </Col>
                                         <Col bsPrefix="col-auto" className="order-12 order-md-2">
                                             <div style={{ width: '35px' }}>
@@ -291,7 +294,7 @@ export default function PokemonDetail() {
                                     </Row>
                                     <Row>
                                         <Col bsPrefix="col-auto" className="order-1">
-                                            <div style={{ width: '110px', maxWidth: '110px' }}>SPEED</div>
+                                            <div style={{ width: '110px', maxWidth: '110px' }}>SPD</div>
                                         </Col>
                                         <Col bsPrefix="col-auto" className="order-12 order-md-2">
                                             <div style={{ width: '35px' }}>
@@ -535,11 +538,11 @@ export default function PokemonDetail() {
                                         <Col>
                                             <div className="d-flex flex-wrap" style={{ gap: '10px' }}>
                                                 {pokemon?.stats?.[0].effort ? <span className="mr-1 mr-md-0">{pokemon?.stats?.[0].effort} HP</span> : ''}
-                                                {pokemon?.stats?.[1].effort ? <span className="mr-1 mr-md-0">{pokemon?.stats?.[1].effort} ATTACK</span> : ''}
-                                                {pokemon?.stats?.[2].effort ? <span className="mr-1 mr-md-0">{pokemon?.stats?.[2].effort} DEFENSE</span> : ''}
-                                                {pokemon?.stats?.[3].effort ? <span className="mr-1 mr-md-0">{pokemon?.stats?.[3].effort} SP. ATK</span> : ''}
-                                                {pokemon?.stats?.[4].effort ? <span className="mr-1 mr-md-0">{pokemon?.stats?.[4].effort} SP. DEF</span> : ''}
-                                                {pokemon?.stats?.[5].effort ? <span className="mr-1 mr-md-0">{pokemon?.stats?.[5].effort} SPEED</span> : ''}
+                                                {pokemon?.stats?.[1].effort ? <span className="mr-1 mr-md-0">{pokemon?.stats?.[1].effort} ATK</span> : ''}
+                                                {pokemon?.stats?.[2].effort ? <span className="mr-1 mr-md-0">{pokemon?.stats?.[2].effort} DEF</span> : ''}
+                                                {pokemon?.stats?.[3].effort ? <span className="mr-1 mr-md-0">{pokemon?.stats?.[3].effort} S. ATK</span> : ''}
+                                                {pokemon?.stats?.[4].effort ? <span className="mr-1 mr-md-0">{pokemon?.stats?.[4].effort} S. DEF</span> : ''}
+                                                {pokemon?.stats?.[5].effort ? <span className="mr-1 mr-md-0">{pokemon?.stats?.[5].effort} SPD</span> : ''}
                                             </div>
                                         </Col>
                                     </Row>
@@ -591,9 +594,9 @@ export default function PokemonDetail() {
                                     <Col bsPrefix="col-4">Move</Col>
                                     <Col style={{width: '80px'}}>Type</Col>
                                     
-                                    <Col style={{width: '50px'}} className="d-none d-md-block">Power</Col>
-                                    <Col style={{width: '70px'}} className="d-none d-lg-block">Accuracy</Col>
-                                    <Col style={{width: '70px'}} className="d-none d-xl-block">Category</Col>
+                                    <Col style={{width: '70px'}} className="d-none d-xl-block">Cat.</Col>
+                                    <Col style={{width: '50px'}} className="d-none d-md-block">Pow</Col>
+                                    <Col style={{width: '70px'}} className="d-none d-lg-block">Acc.</Col>
                                     <Col style={{width: '20px'}} className="d-none d-lg-block">PP</Col>
                                    
                                     
@@ -604,16 +607,17 @@ export default function PokemonDetail() {
                                         <Col bsPrefix="col-4" className="text-capitalize" >{m?.name.replaceAll('-', ' ')}</Col>
                                         <Col style={{width: '80px'}}>
                                             <div className="mb-1 mb-md-0">
-                                                <TypePill type={m.type}></TypePill>
+                                                <MoveType typeName={m?.type.name} typeValue={m?.type.value}></MoveType>
+                                          
                                             </div>
                                             
                                         </Col>
                                        
                                       
                                       
+                                    <Col style={{width: '70px'}} className="d-none d-xl-block"><img title={m?.damage_class.name} style={{width: '32px', objectFit: 'scale-down'}} src={m.damage_class.value === Category.status ? Status : m.damage_class.value === Category.physical ? Physical : Special}/></Col>
                                         <Col style={{width: '50px'}} className="d-none d-md-block">{m.power || '---'}</Col>
                                     <Col style={{width: '70px'}} className="d-none d-lg-block">{m.accuracy || '---'}</Col>
-                                    <Col style={{width: '70px'}} className="d-none d-xl-block"><img style={{width: '70px', objectFit: 'scale-down'}} src={m.damageClass === 'status' ? Status : m.damageClass === 'physical' ? Physical : Special}/></Col>
                                     <Col style={{width: '20px'}} className="d-none d-lg-block">{m.pp}</Col>
                                     </Row>
                                     )}
