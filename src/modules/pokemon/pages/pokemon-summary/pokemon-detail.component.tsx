@@ -8,9 +8,9 @@ import { TypeColor } from "../../../../shared/type-color.enum";
 import NumberFormat from 'react-number-format';
 import useStatCalculator from "../../../../shared/utils/use-stat-calculator.utils";
 import upperFirstCase from "../../../../shared/utils/upper-first-case.utils";
-import Status from'../../../../assets/images/status.png';
-import Physical from'../../../../assets/images/physical.png';
-import Special from'../../../../assets/images/special.png';
+import Status from '../../../../assets/images/status.svg';
+import Physical from '../../../../assets/images/physical.svg';
+import Special from '../../../../assets/images/special.svg';
 import SpinnerContext from "../../../../shared/contexts/spinner.context";
 import TypePill from "../../../../shared/components/type-pill.component";
 import { Category } from "../../../../shared/category.enum";
@@ -594,9 +594,9 @@ export default function PokemonDetail() {
                                     <Col bsPrefix="col-4">Move</Col>
                                     <Col style={{width: '80px'}}>Type</Col>
                                     
-                                    <Col style={{width: '50px'}} className="d-none d-md-block">Power</Col>
-                                    <Col style={{width: '70px'}} className="d-none d-lg-block">Accuracy</Col>
-                                    <Col style={{width: '70px'}} className="d-none d-xl-block">Category</Col>
+                                    <Col style={{width: '70px'}} className="d-none d-xl-block">Cat.</Col>
+                                    <Col style={{width: '50px'}} className="d-none d-md-block">Pow</Col>
+                                    <Col style={{width: '70px'}} className="d-none d-lg-block">Acc.</Col>
                                     <Col style={{width: '20px'}} className="d-none d-lg-block">PP</Col>
                                    
                                     
@@ -615,9 +615,9 @@ export default function PokemonDetail() {
                                        
                                       
                                       
+                                    <Col style={{width: '70px'}} className="d-none d-xl-block"><img style={{width: '32px', objectFit: 'scale-down'}} src={m.damage_class.value === Category.status ? Status : m.damage_class.value === Category.physical ? Physical : Special}/></Col>
                                         <Col style={{width: '50px'}} className="d-none d-md-block">{m.power || '---'}</Col>
                                     <Col style={{width: '70px'}} className="d-none d-lg-block">{m.accuracy || '---'}</Col>
-                                    <Col style={{width: '70px'}} className="d-none d-xl-block"><img style={{width: '70px', objectFit: 'scale-down'}} src={m.damage_class.value === Category.status ? Status : m.damage_class.value === Category.physical ? Physical : Special}/></Col>
                                     <Col style={{width: '20px'}} className="d-none d-lg-block">{m.pp}</Col>
                                     </Row>
                                     )}
