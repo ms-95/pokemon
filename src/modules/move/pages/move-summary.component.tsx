@@ -96,7 +96,7 @@ export default function MoveSummary() {
                                             </Col>
                                         <Col style={{minWidth: '70px', maxWidth: '70px'}} className="d-none d-sm-block">
                                            
-                                            <img style={{objectFit: 'scale-down'}} src={m?.damage_class?.value === Category.physical ? Physical : m?.damage_class?.value === Category.special ? Speical : Status}/>
+                                            <img title={m?.damage_class.name} style={{objectFit: 'scale-down'}} src={m?.damage_class?.value === Category.physical ? Physical : m?.damage_class?.value === Category.special ? Speical : Status}/>
                                         </Col>
                                         <Col style={{minWidth: '65px', maxWidth: '65px'}}>{m.power}</Col>
                                         <Col className="d-none d-sm-block" style={{minWidth: '65px', maxWidth: '65px'}}>{m.accuracy}</Col>

@@ -615,7 +615,7 @@ export default function PokemonDetail() {
                                        
                                       
                                       
-                                    <Col style={{width: '70px'}} className="d-none d-xl-block"><img style={{width: '32px', objectFit: 'scale-down'}} src={m.damage_class.value === Category.status ? Status : m.damage_class.value === Category.physical ? Physical : Special}/></Col>
+                                    <Col style={{width: '70px'}} className="d-none d-xl-block"><img title={m?.damage_class.name} style={{width: '32px', objectFit: 'scale-down'}} src={m.damage_class.value === Category.status ? Status : m.damage_class.value === Category.physical ? Physical : Special}/></Col>
                                         <Col style={{width: '50px'}} className="d-none d-md-block">{m.power || '---'}</Col>
                                     <Col style={{width: '70px'}} className="d-none d-lg-block">{m.accuracy || '---'}</Col>
                                     <Col style={{width: '20px'}} className="d-none d-lg-block">{m.pp}</Col>
