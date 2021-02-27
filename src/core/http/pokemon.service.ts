@@ -9,13 +9,24 @@ export default function PokemonService() {
     const pokemonRepository = PokemonRepository(); 
 
     const getPokemonList = async() => {
-        const list = await pokemonRepository.getPokemons().then(res => {
-            const data = res.data.results.map((r: any, i: number) => ({
-                index: i + 1,
-                name: r.name,
-                url: r.url,
-            }));
-            const sortedList = [
+     
+        const data = await Promise.all(Array.from({length: Number(process.env.REACT_APP_POKEMON_MAX)}).map((d: any, i: number)  => pokemonRepository.getPokemon(i+1).catch(ex => (null))))
+                        .then((res: any) => {
+                                                         
+                            return res.map((r: any) => r ? {
+                                ...r.data,
+                                name: upperFirstCase(r.data.name),
+                                types: r.data.types.map((t: any) => ({
+                                    ...t,
+                                    type: {
+                                        name: upperFirstCase(t.type.name),
+                                        value: Type[t.type.name]
+                                    }                                           
+                                })),
+                            } : null);
+                        });
+       
+       const sortedList = [
                 data.slice(0, 151),
                 data.slice(151, 251),
                 data.slice(251, 386),
@@ -26,8 +37,6 @@ export default function PokemonService() {
                 data.slice(809)
             ];            
             return sortedList;
-        });
-        return list;
 
     }
     const getPokemon = async (index: number) => {

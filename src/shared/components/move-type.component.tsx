@@ -1,4 +1,5 @@
 import {TypeIcon} from '../../assets/images/index';
+import { TypeColor } from '../type-color.enum';
 import { Type } from '../type.enum';
 export default function MoveType(props: any) {
     const getTypeIcon = (typeValue: number) => {
@@ -43,6 +44,12 @@ export default function MoveType(props: any) {
     } 
     
     return (
-        <img title={props.typeName} src={getTypeIcon(props.typeValue)}/>
+        <div className="rounded-circle d-inline-block mr-2" style={{
+            backgroundColor: (TypeColor as { [key: string]: string })[props.typeName],
+            boxShadow: `0 0 4px ${(TypeColor as { [key: string]: string })[props.typeName]}`,
+        }}>
+
+        <img title={props.typeName} className="m-2" style={{width: '16px'}} src={getTypeIcon(props.typeValue)}/>
+        </div>
     );
 }
