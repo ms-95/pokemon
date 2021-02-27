@@ -174,7 +174,7 @@ export function PokemonSummary() {
                                             <Col bsPrefix="col-2">
                                                 
                                                  
-                                            <Button variant="dark" onClick={() => viewPokemon(1)} style={{height: '32px', width: '32px'}} className="rounded-circle m-0 p-0 " >
+                                            <Button variant="dark" onClick={() => viewPokemon(p?.id)} style={{height: '32px', width: '32px'}} className="rounded-circle m-0 p-0 " >
 
                                             <FontAwesomeIcon style={{height: '16px', width: '16px', margin: 'auto'}} icon={faSearch} />
                                             </Button>
