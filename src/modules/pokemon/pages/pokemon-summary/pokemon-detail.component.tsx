@@ -128,7 +128,7 @@ export default function PokemonDetail() {
                                                 <div className="d-flex flex-wrap">
                                                     {pokemon?.types?.map((t: any, i: number) => 
                                                         <div className="" key={`pokemonType${i}`}>
-                                                            <PokemonType typeName={t?.type.name} typeValue={t?.type.value}></PokemonType>
+                                                            <MoveType typeName={t?.type.name} typeValue={t?.type.value}></MoveType>
                                                         </div>
                                                     )}
                                                 </div>
