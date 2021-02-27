@@ -1,6 +1,6 @@
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useContext, useRef } from "react";
+import React, { Fragment, useContext, useRef } from "react";
 import { useEffect, useState } from "react";
 import { Button, Col, OverlayTrigger, Row, Tooltip, Image } from "react-bootstrap";
 import { useHistory } from "react-router";
@@ -18,8 +18,7 @@ export function PokemonSummary() {
     const history = useHistory();
     const isShown = useOnScreen(genNav);
     const { setIsLoading } = useContext(SpinnerContext);
-    const pokemonPreviews = useRef(new Array<any>());
-    const [show, setShow] = useState(false);
+  
     useEffect(() => {
         const getPokemon = async () => {
             setIsLoading(true);
@@ -145,23 +144,13 @@ export function PokemonSummary() {
                     <div className="" key={'r' + i} ref={(element: any) => pokemonGens.current.push(element)}>
                         {r.map((p: any, y: number) =>
                             p ?
-                            <div className="w-100 text-left my-2" key={'p' + y}>
-                            <OverlayTrigger                                 
-                                placement="left"   
-                                show={show}                                 
-                                delay={{ show: 100, hide: 50 }}
-                                target={pokemonPreviews.current[y]}
-                                overlay={
-                                    <div className="rounded" >
-                                        <img alt={`${p?.name}`} 
-                                        src={require(`../../../../assets/images/front/${p.id}_front.png`).default}/>
-
-                                    </div>
-                                   
-                                }
-                            >
-                                
-                                        <Row className=" d-flex align-items-center">
+                           
+                                    <div key={'p' + y} className="w-100 text-left my-2" >
+                            
+                            
+     
+         
+                                        <Row className=" d-flex align-items-center"  >
                                             <Col bsPrefix="col col-lg-1" >
                                                 <div className="font-weight-bold border-right pr-4">
 
@@ -169,7 +158,7 @@ export function PokemonSummary() {
                                                 </div>
                                             </Col>
                                             <Col bsPrefix="col col-lg-2" >
-                                                <span onClick={() => setShow(!show)} ref={(element: any) => pokemonPreviews.current.push(element)}>
+                                                <span >
                                                     {p?.name}
                                                 </span>
                                             </Col>
@@ -191,15 +180,13 @@ export function PokemonSummary() {
                                             </Button>
                                                   
                                             </Col>
-                                        </Row>
-                                   
-                            </OverlayTrigger>
-                        </div>
-                                
-
+                                        </Row>      
+                                    </div>                               
+                             
                                 : ''
                         )}
                    </div>
+                        
                 )}
                
            </div>
