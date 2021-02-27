@@ -206,7 +206,7 @@ export default function PokemonDetail() {
                                     </Row>
                                     <Row>
                                         <Col bsPrefix="col-auto" className="order-1">
-                                            <div style={{ width: '110px', maxWidth: '110px' }}>ATTACK</div>
+                                            <div style={{ width: '110px', maxWidth: '110px' }}>ATK</div>
                                         </Col>
                                         <Col bsPrefix="col-auto" className="order-12 order-md-2">
                                             <div style={{ width: '35px' }}>
@@ -228,7 +228,7 @@ export default function PokemonDetail() {
                                     </Row>
                                     <Row>
                                         <Col bsPrefix="col-auto" className="order-1">
-                                            <div style={{ width: '110px', maxWidth: '110px' }}>DEFENSE</div>
+                                            <div style={{ width: '110px', maxWidth: '110px' }}>DEF</div>
                                         </Col>
                                         <Col bsPrefix="col-auto" className="order-12 order-md-2">
                                             <div style={{ width: '35px' }}>
@@ -250,7 +250,7 @@ export default function PokemonDetail() {
                                     </Row>
                                     <Row>
                                         <Col bsPrefix="col-auto" className="order-1">
-                                            <div style={{ width: '110px', maxWidth: '110px' }}>SP. ATK</div>
+                                            <div style={{ width: '110px', maxWidth: '110px' }}>S. ATK</div>
                                         </Col>
                                         <Col bsPrefix="col-auto" className="order-12 order-md-2">
                                             <div style={{ width: '35px' }}>
@@ -272,7 +272,7 @@ export default function PokemonDetail() {
                                     </Row>
                                     <Row>
                                         <Col bsPrefix="col-auto" className="order-1">
-                                            <div style={{ width: '110px', maxWidth: '110px' }}>SP. DEF</div>
+                                            <div style={{ width: '110px', maxWidth: '110px' }}>S. DEF</div>
                                         </Col>
                                         <Col bsPrefix="col-auto" className="order-12 order-md-2">
                                             <div style={{ width: '35px' }}>
@@ -294,7 +294,7 @@ export default function PokemonDetail() {
                                     </Row>
                                     <Row>
                                         <Col bsPrefix="col-auto" className="order-1">
-                                            <div style={{ width: '110px', maxWidth: '110px' }}>SPEED</div>
+                                            <div style={{ width: '110px', maxWidth: '110px' }}>SPD</div>
                                         </Col>
                                         <Col bsPrefix="col-auto" className="order-12 order-md-2">
                                             <div style={{ width: '35px' }}>
@@ -538,11 +538,11 @@ export default function PokemonDetail() {
                                         <Col>
                                             <div className="d-flex flex-wrap" style={{ gap: '10px' }}>
                                                 {pokemon?.stats?.[0].effort ? <span className="mr-1 mr-md-0">{pokemon?.stats?.[0].effort} HP</span> : ''}
-                                                {pokemon?.stats?.[1].effort ? <span className="mr-1 mr-md-0">{pokemon?.stats?.[1].effort} ATTACK</span> : ''}
-                                                {pokemon?.stats?.[2].effort ? <span className="mr-1 mr-md-0">{pokemon?.stats?.[2].effort} DEFENSE</span> : ''}
-                                                {pokemon?.stats?.[3].effort ? <span className="mr-1 mr-md-0">{pokemon?.stats?.[3].effort} SP. ATK</span> : ''}
-                                                {pokemon?.stats?.[4].effort ? <span className="mr-1 mr-md-0">{pokemon?.stats?.[4].effort} SP. DEF</span> : ''}
-                                                {pokemon?.stats?.[5].effort ? <span className="mr-1 mr-md-0">{pokemon?.stats?.[5].effort} SPEED</span> : ''}
+                                                {pokemon?.stats?.[1].effort ? <span className="mr-1 mr-md-0">{pokemon?.stats?.[1].effort} ATK</span> : ''}
+                                                {pokemon?.stats?.[2].effort ? <span className="mr-1 mr-md-0">{pokemon?.stats?.[2].effort} DEF</span> : ''}
+                                                {pokemon?.stats?.[3].effort ? <span className="mr-1 mr-md-0">{pokemon?.stats?.[3].effort} S. ATK</span> : ''}
+                                                {pokemon?.stats?.[4].effort ? <span className="mr-1 mr-md-0">{pokemon?.stats?.[4].effort} S. DEF</span> : ''}
+                                                {pokemon?.stats?.[5].effort ? <span className="mr-1 mr-md-0">{pokemon?.stats?.[5].effort} SPD</span> : ''}
                                             </div>
                                         </Col>
                                     </Row>
