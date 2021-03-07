@@ -8,13 +8,14 @@ import PokemonRepository from "./pokemon.repository";
 export default function PokemonService() {
     const pokemonRepository = PokemonRepository(); 
 
-    const getPokemonList = async() => {
+    const getPokemonList = async(start: number, end: number) => {
      
-        const data = await Promise.all(Array.from({length: Number(process.env.REACT_APP_POKEMON_MAX)}).map((d: any, i: number)  => pokemonRepository.getPokemon(i+1).catch(ex => (null))))
+        const data = await Promise.all(Array.from({length: end - start + 1}).map((d: any, i: number)  => pokemonRepository.getPokemon(start + i).catch(ex => (null))))
                         .then((res: any) => {
                                                          
                             return res.map((r: any) => r ? {
                                 ...r.data,
+                                index: String(r.data.id).padStart(3, '0'),
                                 name: upperFirstCase(r.data.name),
                                 types: r.data.types.map((t: any) => ({
                                     ...t,
@@ -26,17 +27,8 @@ export default function PokemonService() {
                             } : null);
                         });
        
-       const sortedList = [
-                data.slice(0, 151),
-                data.slice(151, 251),
-                data.slice(251, 386),
-                data.slice(386, 493),
-                data.slice(493, 649),
-                data.slice(649, 721),
-                data.slice(721, 809),
-                data.slice(809)
-            ];            
-            return sortedList;
+           
+            return data;
 
     }
     const getPokemon = async (index: number) => {
