@@ -74,7 +74,6 @@ export function PokemonSummary() {
 
     return (
         <React.Fragment>
-            <div className="p-4">
             <Tabs
                 value={value}
                 indicatorColor="primary"
@@ -93,6 +92,8 @@ export function PokemonSummary() {
                 <Tab label="810-898" />
                
             </Tabs>
+            <div className="px-4">
+            
              <TableContainer>
             
                 <Table >
