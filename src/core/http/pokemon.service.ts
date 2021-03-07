@@ -15,7 +15,7 @@ export default function PokemonService() {
                                                          
                             return res.map((r: any) => r ? {
                                 ...r.data,
-                                id: String(r.data.id).padStart(3, '0'),
+                                index: String(r.data.id).padStart(3, '0'),
                                 name: upperFirstCase(r.data.name),
                                 types: r.data.types.map((t: any) => ({
                                     ...t,

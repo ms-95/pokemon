@@ -1,15 +1,10 @@
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { Fragment, useContext, useRef } from "react";
+import React, { useContext } from "react";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
-import PokemonRepository from "../../../../core/http/pokemon.repository";
 import PokemonService from "../../../../core/http/pokemon.service";
 import MoveType from "../../../../shared/components/move-type.component";
-import PokemonType from "../../../../shared/components/pokemon-type.component";
 import SpinnerContext from "../../../../shared/contexts/spinner.context";
-import useOnScreen from "../../../../shared/utils/use-on-screen.utils";
-import { TableContainer, Paper, Card,  TableHead, TableRow, TableCell, TableBody, Tabs,  Table } from "@material-ui/core";
+import { TableContainer,  TableHead, TableRow, TableCell, TableBody, Tabs,  Table } from "@material-ui/core";
 import Tab from '@material-ui/core/Tab';
 import { Link } from "react-router-dom";
 
@@ -58,19 +53,8 @@ export function PokemonSummary() {
                 getPokemon(810, 898 );
                 break;
         }
-        
 
     }, [value]);
-
-    
-    const viewPokemon = (index: number) => {
-        history.push(`/pokemon/${index}`);
-
-    }
-
-   
-
-     
 
     return (
         <React.Fragment>
@@ -113,10 +97,10 @@ export function PokemonSummary() {
                     </TableRow>
                     </TableHead>
                     <TableBody>
-                        {pokemons?.map((row, i) => (
-                            <TableRow key={i}>
+                        {pokemons?.map((row) => (
+                            <TableRow key={row?.id}>
                             <TableCell component="th" scope="row">
-                                {row?.id}
+                                {row?.index}
                             </TableCell>
                             <TableCell >
                                 <Link to={`/pokemon/${row?.id}`}> {row?.name}</Link>   
