@@ -16,6 +16,7 @@ import SpinnerContext from './shared/contexts/spinner.context';
 import FabMenu from './shared/components/fab-menu/fab-menu.component';
 import { AppBar, Toolbar, IconButton, Typography } from '@material-ui/core';
 import SwipeableTemporaryDrawer from './shared/components/swipeable-temporary-drawer.component';
+import MoveContext from './shared/contexts/move.context';
 const PokemonContainer = lazy(() => import ('./modules/pokemon/pokemon.container')) ;
 const OtherContainer = lazy(() => import ('./modules/other/other.container')) ;
 const AbilityContainer = lazy(() => import ('./modules/ability/ability.container')) ;
@@ -24,12 +25,15 @@ const MoveContainer = lazy(() => import ('./modules/move/move.container')) ;
 
 function App() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [moveCache, setMoveCache] = useState<any[]>([]);
   const pokemonRef = useRef<any>(null);
   return (
     <Router>
       <Suspense fallback={<Spinner></Spinner>}>
       <SpinnerContext.Provider value={{ isLoading, setIsLoading }}>
-        <AppBar position="static">
+        <MoveContext.Provider value={{ moveCache, setMoveCache }}>
+          
+        <AppBar position="fixed">
         <Toolbar>
           
             <SwipeableTemporaryDrawer></SwipeableTemporaryDrawer>
@@ -40,7 +44,7 @@ function App() {
         
         </Toolbar>
       </AppBar>
-        <div>
+        <div style={{marginTop: '64px'}}>
         <ScrollToTop />
             <Switch>
               <Redirect exact from='/' to='/pokemon' />
@@ -67,8 +71,10 @@ function App() {
         <div className={isLoading ? 'd-block' : 'd-none'}>
           <Spinner ></Spinner>
         </div>
-        
+        </MoveContext.Provider>
+
       </SpinnerContext.Provider>
+
       </Suspense>
     </Router>
     

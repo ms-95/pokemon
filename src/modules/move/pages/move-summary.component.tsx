@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Button, Card, Col, Form, Row } from "react-bootstrap";
 import MoveService from "../../../core/http/move/move.service";
 import { Category } from "../../../shared/category.enum";
 import { Type } from "../../../shared/type.enum";
@@ -12,6 +11,10 @@ import MoveType from "../../../shared/components/move-type.component";
 import SpinnerContext from "../../../shared/contexts/spinner.context";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import MoveContext from "../../../shared/contexts/move.context";
+import { Button, Card, FormControl, InputLabel, MenuItem, Select, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@material-ui/core";
+import { CardContent } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 
 export default function MoveSummary() {
@@ -25,97 +28,133 @@ export default function MoveSummary() {
         value: Category[c]
     }));
     const { setIsLoading } = useContext(SpinnerContext);
-
+    const { moveCache, setMoveCache } = useContext(MoveContext);
     const [moves, setMoves] = useState(new Array());
+    const [type, setType] = useState(0);
+    const [category, setCategory] = useState(0);
     useEffect(() => {
         getMoves();
     }, []);
-
+    useEffect(() => {
+        if(moves.length > 0) {
+            setIsLoading(false);
+        }
+    }, [moves]);
     const getMoves = async () => {
         setIsLoading(true);
-
-        const result = await moveService.getMoveList().finally(() => {setIsLoading(false);});
-        console.log(result);
+        console.log(moveCache);
         
-        setMoves(result.filter(x => x.learned_by_pokemon?.length));
+        if (moveCache.length < 1) {
+
+            const result = await moveService.getMoveList().finally(() => {setIsLoading(false);});
+            console.log(result);
+            setMoves(result.filter(x => x.learned_by_pokemon?.length));
+            setMoveCache(result.filter(x => x.learned_by_pokemon?.length))
+        } else {
+            setMoves(moveCache);            
+        }
     }
+
+    const onTypeChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+        setType(event.target.value as number);
+    };
+    const onCategoryChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+        setCategory(event.target.value as number);
+    };
+    
     return (
         <React.Fragment>
-
-            <Form className="sticky-top bg-light rounded-bottom shadow">
-                <Row noGutters className="p-2" >
-                    <Col bsPrefix="col-12 col-sm-3 " className="" >
-                        <Form.Group controlId="exampleForm.ControlSelect1">
-                           
-                            <Form.Control as="select" >
-                                <option>All types</option>
-                                {types.map((t: any, i: number) => <option key={`type${i}`} value={t.value}>{t.name}</option>)}
-                            </Form.Control>
-                        </Form.Group>
-
-                    </Col>
-                    <Col bsPrefix="col-12 col-sm-3" className="offset-sm-1">
-                        <Form.Group controlId="exampleForm.ControlSelect1">
-                            <Form.Control as="select">
-                                <option>All categories</option>
-                                {categories.map((c: any, i: number) => <option key={`type${i}`} value={c.value}>{c.name}</option>)}
-                            </Form.Control>
-                        </Form.Group>
-                    </Col>
-                    <Col className="col-12 col-sm-auto offset-sm-1 text-center">
-                        <Button variant="primary">Search</Button>
-                    </Col>
-                </Row>
-            </Form>
-            <div className="p-4 d-flex flex-column">
-                <Row>
-                    <Col bsPrefix="col-12">
-                        <Card className="my-2 shadow border-0">
-
-                            <Card.Body>
-                                <Row className="font-weight-bold">
-                                    <Col style={{ minWidth: '150px', maxWidth: '150px' }}>Name</Col>
-                                    <Col style={{ minWidth: '90px', maxWidth: '90px' }}>Type</Col>
-                                    <Col className="d-none d-sm-block" style={{ minWidth: '70px', maxWidth: '70px' }}>
-                                        Cat.
-                                        </Col>
-                                    <Col style={{ minWidth: '65px', maxWidth: '65px' }}>Pow</Col>
-                                    <Col className="d-none d-sm-block" style={{ minWidth: '65px', maxWidth: '65px' }}>Acc.</Col>
-                                    <Col className="d-none d-sm-block" style={{ minWidth: '65px', maxWidth: '65px' }}>PP</Col>
-                                    <Col  className="d-none d-lg-block">Effects</Col>
-                                    <Col></Col>
-                                </Row>
-                               {
-                                moves.map((m: any) => 
-                                    <Row className="py-2 border-bottom">                                        
-                                        <Col style={{minWidth: '150px', maxWidth: '150px'}}>{m.name}</Col>
-                                        <Col style={{minWidth: '90px', maxWidth: '90px'}}>
-                                         
-                                        <MoveType typeName={m?.type.name} typeValue={m?.type.value}></MoveType>
-                                          
-                                            </Col>
-                                        <Col style={{minWidth: '70px', maxWidth: '70px'}} className="d-none d-sm-block">
-                                           
-                                            <img title={m?.damage_class.name} style={{objectFit: 'scale-down'}} src={m?.damage_class?.value === Category.physical ? Physical : m?.damage_class?.value === Category.special ? Speical : Status}/>
-                                        </Col>
-                                        <Col style={{minWidth: '65px', maxWidth: '65px'}}>{m.power}</Col>
-                                        <Col className="d-none d-sm-block" style={{minWidth: '65px', maxWidth: '65px'}}>{m.accuracy}</Col>
-                                        <Col className="d-none d-sm-block" style={{minWidth: '65px', maxWidth: '65px'}}>{m.pp}</Col>
-                                        <Col className="d-none d-lg-block my-1 my-sm-0 bg-light shadow-sm">{m?.flavor_text_entries?.[0]?.flavor_text}</Col>
-                                        <Col bsPrefix="col-auto" className="d-flex align-items-center">
-                                        <Button variant="dark" onClick={() => {}} style={{height: '32px', width: '32px'}} className="rounded-circle m-0 p-0 " >
-
-                                            <FontAwesomeIcon style={{height: '16px', width: '16px', margin: 'auto'}} icon={faSearch} />
-                                            </Button>
-                                        </Col>
-                                    </Row>
+            <div className="p-4 " style={{position: 'sticky', top: '42px', left: '0px', right: '0px'}}>
+            <Card style={{background: 'rgba(255,255,255,0.8)', backdropFilter: 'blur(2px)'}}>
+                <CardContent>
+                    <div className="d-flex align-items-end ">
+                        <div className="w-75">
+                        
+                        <FormControl className="w-25">
+                            <InputLabel >Type</InputLabel>
+                            <Select                            
+                            value={type}
+                            onChange={onTypeChange}
+                            >
+                                {types.map((type: any) => 
+                                    <MenuItem value={type.value}>{type.name}</MenuItem>                            
                                 )}
-                              
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                </Row>
+                            
+                            </Select>
+                        </FormControl>
+
+                        <FormControl className="w-25 mx-4">
+                            <InputLabel >Category</InputLabel>
+                            <Select                            
+                            value={category}
+                            onChange={onCategoryChange}
+                            >
+                                {categories.map((cat: any) => 
+                                    <MenuItem value={cat.value}>{cat.name}</MenuItem>                            
+                                )}
+                            
+                            </Select>
+                        </FormControl>
+                        </div>
+                        <div>
+                            <Button variant="contained" color="primary" size="small">
+                                Search
+                            </Button>
+                        </div>
+                    </div>
+                </CardContent>
+             
+            </Card>
+           
             </div>
+            <div className="p-4 ">
+                <Card>
+                    <CardContent>
+                    <TableContainer>
+            
+            <Table >
+                <TableHead>
+                <TableRow>
+                    <TableCell width="100px" >Name</TableCell>           
+                    <TableCell width="160px">Type</TableCell>
+                    <TableCell width="160px">Pow</TableCell>
+                    <TableCell width="80px">Cat.</TableCell>
+                    <TableCell width="80px">Acc.</TableCell>
+                    <TableCell width="80px">PP</TableCell>
+                    <TableCell>Effects</TableCell>
+                </TableRow>
+                </TableHead>
+                <TableBody>
+                    {moves?.map((row) => (
+                        <TableRow key={row?.id}>
+                        
+                            <TableCell >
+                                <Link to={`/move/${row?.id}`}> {row?.name}</Link>   
+                            </TableCell>
+                            <TableCell >
+                                <MoveType typeName={row?.type.name} typeValue={row?.type.value}></MoveType>
+                            </TableCell>
+                            <TableCell >{row?.power}</TableCell>
+                            <TableCell >
+                                <img title={row?.damage_class.name} 
+                                    style={{objectFit: 'scale-down'}} 
+                                    src={row?.damage_class?.value === Category.physical ? Physical : 
+                                        row?.damage_class?.value === Category.special ? Speical : 
+                                        Status}/>
+                            </TableCell>
+                            <TableCell >{row?.accuracy}</TableCell>
+                            <TableCell >{row?.pp}</TableCell>
+                            <TableCell >{row?.flavor_text_entries?.[0]?.flavor_text}</TableCell>
+                        </TableRow>
+                    ))}
+                </TableBody>
+            </Table>
+            </TableContainer>
+                    </CardContent>
+
+                </Card>
+            </div>
+          
         </React.Fragment>
 
     );
