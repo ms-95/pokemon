@@ -29,10 +29,11 @@ function App() {
       <Suspense fallback={<Spinner></Spinner>}>
       <SpinnerContext.Provider value={{ isLoading, setIsLoading }}>
         {/* <Container fluid  className="h-100" > */}
-        <Row className="h-100" noGutters>
-
-          <Col>
-            <ScrollToTop />
+        <div>
+          Header
+        </div>
+        <div>
+        <ScrollToTop />
             <Switch>
               <Redirect exact from='/' to='/pokemon' />
               <Route path="/pokemon">
@@ -52,10 +53,9 @@ function App() {
               </Route>
             </Switch>
 
-          </Col>
-
-        </Row>
-        {/* </Container> */}
+        </div>
+        
+      
         <div className={isLoading ? 'd-block' : 'd-none'}>
           <Spinner ></Spinner>
         </div>
