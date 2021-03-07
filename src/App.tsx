@@ -9,12 +9,13 @@ import {
 } from "react-router-dom";
 import React, { Suspense, lazy, useRef, useState } from 'react';
 
-import { Col, Row } from 'react-bootstrap';
+import { Button, Col, Row } from 'react-bootstrap';
 import ScrollToTop from './shared/utils/scroll-to-top.utils';
 import Spinner from './shared/components/spinner.component';
 import SpinnerContext from './shared/contexts/spinner.context';
 import FabMenu from './shared/components/fab-menu/fab-menu.component';
-
+import { AppBar, Toolbar, IconButton, Typography } from '@material-ui/core';
+import MenuIcon from '@material-ui/icons/Menu';
 const PokemonContainer = lazy(() => import ('./modules/pokemon/pokemon.container')) ;
 const OtherContainer = lazy(() => import ('./modules/other/other.container')) ;
 const AbilityContainer = lazy(() => import ('./modules/ability/ability.container')) ;
@@ -28,10 +29,17 @@ function App() {
     <Router>
       <Suspense fallback={<Spinner></Spinner>}>
       <SpinnerContext.Provider value={{ isLoading, setIsLoading }}>
-        {/* <Container fluid  className="h-100" > */}
-        <div>
-          Header
-        </div>
+        <AppBar position="static">
+        <Toolbar>
+          <IconButton edge="start"  color="inherit" aria-label="menu">
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" >
+            
+          </Typography>
+        
+        </Toolbar>
+      </AppBar>
         <div>
         <ScrollToTop />
             <Switch>

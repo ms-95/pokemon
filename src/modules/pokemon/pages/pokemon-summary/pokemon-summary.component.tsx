@@ -11,6 +11,7 @@ import SpinnerContext from "../../../../shared/contexts/spinner.context";
 import useOnScreen from "../../../../shared/utils/use-on-screen.utils";
 import { TableContainer, Paper, Card,  TableHead, TableRow, TableCell, TableBody, Tabs,  Table } from "@material-ui/core";
 import Tab from '@material-ui/core/Tab';
+import { Link } from "react-router-dom";
 
 export function PokemonSummary() {
     const [pokemons, setPokemons] = useState<any[]>([]);
@@ -97,15 +98,16 @@ export function PokemonSummary() {
                 <Table >
                     <TableHead>
                     <TableRow>
-                        <TableCell>No.</TableCell>
+                        <TableCell width="100px" >No.</TableCell>
                         <TableCell >Name</TableCell>
-                        <TableCell >Types</TableCell>
-                        <TableCell >HP</TableCell>
-                        <TableCell >ATK</TableCell>
-                        <TableCell >DEF</TableCell>
-                        <TableCell >S.ATK</TableCell>
-                        <TableCell >S.DEF</TableCell>
-                        <TableCell >SPD</TableCell>
+                        <TableCell width="160px">Types</TableCell>
+                        <TableCell width="80px">HP</TableCell>
+                        <TableCell width="80px">ATK</TableCell>
+                        <TableCell width="80px">DEF</TableCell>
+                        <TableCell width="80px">S.ATK</TableCell>
+                        <TableCell width="80px">S.DEF</TableCell>
+                        <TableCell width="80px">SPD</TableCell>
+                        <TableCell width="80px">TOTAL</TableCell>
                        
                     </TableRow>
                     </TableHead>
@@ -115,7 +117,9 @@ export function PokemonSummary() {
                             <TableCell component="th" scope="row">
                                 {row?.id}
                             </TableCell>
-                            <TableCell >{row?.name}</TableCell>
+                            <TableCell >
+                                <Link to={`/pokemon/${row?.id}`}> {row?.name}</Link>   
+                            </TableCell>
                             <TableCell >
                                 {row?.types?.map((t: any, i: number) =>
                                         <div className="d-inline-block m-2">
@@ -131,6 +135,7 @@ export function PokemonSummary() {
                             <TableCell >{row?.stats[3].base_stat}</TableCell>
                             <TableCell >{row?.stats[4].base_stat}</TableCell>
                             <TableCell >{row?.stats[5].base_stat}</TableCell>
+                            <TableCell >{row?.stats.reduce((sum: number, curr: {base_stat: number}) => sum + curr.base_stat, 0)}</TableCell>
                         
                             </TableRow>
                         ))}
