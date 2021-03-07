@@ -35,11 +35,7 @@ export default function MoveSummary() {
     useEffect(() => {
         getMoves();
     }, []);
-    useEffect(() => {
-        if(moves.length > 0) {
-            setIsLoading(false);
-        }
-    }, [moves]);
+    
     const getMoves = async () => {
         setIsLoading(true);
         console.log(moveCache);
@@ -51,7 +47,8 @@ export default function MoveSummary() {
             setMoves(result.filter(x => x.learned_by_pokemon?.length));
             setMoveCache(result.filter(x => x.learned_by_pokemon?.length))
         } else {
-            setMoves(moveCache);            
+            setMoves(moveCache);      
+            setIsLoading(false);      
         }
     }
 
@@ -77,7 +74,7 @@ export default function MoveSummary() {
                             onChange={onTypeChange}
                             >
                                 {types.map((type: any) => 
-                                    <MenuItem value={type.value}>{type.name}</MenuItem>                            
+                                    <MenuItem key={type.value} value={type.value}>{type.name}</MenuItem>                            
                                 )}
                             
                             </Select>
@@ -90,7 +87,7 @@ export default function MoveSummary() {
                             onChange={onCategoryChange}
                             >
                                 {categories.map((cat: any) => 
-                                    <MenuItem value={cat.value}>{cat.name}</MenuItem>                            
+                                    <MenuItem key={cat.value} value={cat.value}>{cat.name}</MenuItem>                            
                                 )}
                             
                             </Select>
